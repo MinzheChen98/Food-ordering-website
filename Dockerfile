@@ -16,7 +16,7 @@ ENV PYTHONUNBUFFERED 1
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./backend/requirements.txt .
+COPY ./backend_project/requirements.txt .
 RUN pip install -r requirements.txt
 
 # copy project
