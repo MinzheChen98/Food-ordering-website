@@ -12,8 +12,9 @@ services:
       - static_volume:/home/app/backend/backend/staticfiles
   nginx:
     build: ./nginx
+    image: ece651foodie.azurecr.io/ece651_nginx
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - web
     volumes:
