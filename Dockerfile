@@ -21,3 +21,9 @@ RUN pip install -r requirements.txt
 
 # copy project
 COPY . .
+
+RUN export $(cat env.prod | xargs)
+
+RUN python backend_project/manage.py collectstatic --no-input --clear
+
+CMD [ "gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --pythonpath './backend_project/'" ]
