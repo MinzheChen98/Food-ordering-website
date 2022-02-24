@@ -2,6 +2,8 @@ FROM python:latest
 
 RUN mkdir -p /home/app
 
+ENV DEBUG=0
+
 # set work directory
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/backend
@@ -21,3 +23,11 @@ RUN pip install -r requirements.txt
 
 # copy project
 COPY . .
+
+RUN python backend_project/manage.py collectstatic --no-input --clear
+
+EXPOSE 8000
+
+RUN ls -lah *
+
+CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000", "--pythonpath", "./backend_project/"]
