@@ -1,12 +1,33 @@
+# FROM ubuntu:latest
 FROM nginx:1.21-alpine
 
 # RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
+# RUN apt-get update && apt-get install -y nginx openssh-server
 
-WORKDIR /home/app/backend/staticfiles/
+# RUN ls /etc/nginx/conf.d/
+
+ENV NGINX_DIR="."
+
+# RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+RUN rm /etc/nginx/conf.d/default.conf
+COPY $NGINX_DIR/nginx.conf /etc/nginx/conf.d
+
+# RUN apk add openssh
+
+# RUN echo "root:Docker!" | chpasswd
+
+# COPY $NGINX_DIR/sshd_config /etc/ssh/
+
+# RUN mkdir -p /tmp
+# COPY $NGINX_DIR/ssh_setup.sh /tmp
+# RUN chmod +x /tmp/ssh_setup.sh \
+#     && (sleep 1;/tmp/ssh_setup.sh)
 
 EXPOSE 80
 
-# CMD ["nginx-debug", "-g", "daemon off;"]
+# COPY ${NGINX_DIR}/entrypoint.sh /root
+# RUN chmod +x /root/entrypoint.sh
+
+# CMD ["/root/entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
