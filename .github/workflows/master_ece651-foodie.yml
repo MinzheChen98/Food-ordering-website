@@ -57,11 +57,11 @@ jobs:
     
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2.2.1
+      uses: azure/webapps-deploy@v2.2.3
       with:
         app-name: 'ece651-foodie'
         slot-name: 'production'
-        configuration-file: '.'
+        configuration-file: './docker-compose.yml'
         images: |
           'ece651foodie.azurecr.io/ece651_web:latest'
           'ece651foodie.azurecr.io/ece651_nginx:latest'
