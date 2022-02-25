@@ -57,12 +57,13 @@ jobs:
     
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v2.1.6
       with:
         app-name: 'ece651-foodie'
         slot-name: 'production'
         # publish-profile: ${{ secrets.AzureAppService_PublishProfile_050e29fe8d5c4f2289d84a740bb9abb6 }}
+        configuration-file: ./docker-compose.yml
         images: |
           'ece651foodie.azurecr.io/ece651_web:latest'
           'ece651foodie.azurecr.io/ece651_nginx:latest'
-        configuration-file: ./docker-compose.yml
+        
