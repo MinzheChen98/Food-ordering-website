@@ -12,8 +12,7 @@ services:
   nginx:
     image: ece651foodie.azurecr.io/ece651_nginx:latest
     ports:
-      - 80:80
-      - 2222:2222
+      - 80
     volumes:
       - static_volume:/home/app/backend/staticfiles
 volumes:

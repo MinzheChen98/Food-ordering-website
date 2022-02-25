@@ -29,7 +29,7 @@ RUN pip install -r backend/requirements.txt
 
 RUN python backend/manage.py collectstatic --no-input --clear
 
-EXPOSE 8000
+EXPOSE 8000 2222
 
 RUN echo "--------------------"
 
