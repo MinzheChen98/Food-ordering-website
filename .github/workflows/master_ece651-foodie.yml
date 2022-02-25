@@ -48,6 +48,8 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+    - uses: actions/checkout@v2
+    
     - name: Azure login
       uses: azure/login@v1
       with:
@@ -55,6 +57,7 @@ jobs:
     - run: |
         az webapp list
         ls -lah
+        pwd
     
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
