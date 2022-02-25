@@ -54,6 +54,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - run: |
         az webapp list
+        ls -lah
     
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
