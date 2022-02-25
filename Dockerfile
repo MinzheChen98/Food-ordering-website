@@ -23,14 +23,14 @@ ENV PYTHONUNBUFFERED 1
 
 # install dependencies
 RUN pip install --upgrade pip
-# COPY ./backend_project/requirements.txt .
+# COPY ./backend/requirements.txt .
 RUN ls -lah
-RUN pip install -r backend_project/requirements.txt
+RUN pip install -r backend/requirements.txt
 
-RUN python backend_project/manage.py collectstatic --no-input --clear
+RUN python backend/manage.py collectstatic --no-input --clear
 
 EXPOSE 8000
 
 RUN echo "--------------------"
 
-CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000", "--pythonpath", "./backend_project/"]
+CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000", "--pythonpath", "./backend/"]

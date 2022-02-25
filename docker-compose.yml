@@ -4,7 +4,7 @@ services:
   web:
     image: ece651foodie.azurecr.io/ece651_web:latest
     volumes:
-      - static_volume:/home/app/backend_project/staticfiles
+      - static_volume:/home/app/backend/staticfiles
     environment:
       DB_HOST: "google.com:3306"
       DB_USER: "wordpress"
@@ -15,6 +15,6 @@ services:
       - 80:80
       - 2222:2222
     volumes:
-      - static_volume:/home/app/backend_project/staticfiles
+      - static_volume:/home/app/backend/staticfiles
 volumes:
   static_volume:
