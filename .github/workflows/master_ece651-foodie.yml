@@ -65,4 +65,4 @@ jobs:
         images: |
           'ece651foodie.azurecr.io/ece651_web:latest'
           'ece651foodie.azurecr.io/ece651_nginx:latest'
-        configuration-file: docker-compose.yml
+        configuration-file: ./docker-compose.yml
