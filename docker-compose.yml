@@ -3,10 +3,8 @@ version: '3.8'
 services:
   web:
     image: ece651foodie.azurecr.io/ece651_web:latest
-    ports:
-      - 8000:8000
     volumes:
-      - static_volume:/home/app/backend/backend/staticfiles
+      - static_volume:/home/app/backend_project/staticfiles
     environment:
       DB_HOST: "google.com:3306"
       DB_USER: "wordpress"
@@ -15,9 +13,8 @@ services:
     image: ece651foodie.azurecr.io/ece651_nginx:latest
     ports:
       - 80:80
-    depends_on:
-      - web
+      - 2222:2222
     volumes:
-      - static_volume:/home/app/backend/backend/staticfiles
+      - static_volume:/home/app/backend_project/staticfiles
 volumes:
   static_volume:
