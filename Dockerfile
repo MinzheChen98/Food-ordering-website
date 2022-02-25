@@ -33,4 +33,4 @@ EXPOSE 8000
 
 RUN echo "--------------------"
 
-CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000", "--pythonpath", "./backend/"]
+CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000", "--pythonpath", "$HOME/backend/"]
