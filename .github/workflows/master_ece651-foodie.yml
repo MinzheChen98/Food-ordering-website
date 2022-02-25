@@ -55,4 +55,4 @@ jobs:
         app-name: 'ece651-foodie'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_050e29fe8d5c4f2289d84a740bb9abb6 }}
-        images: 'ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_web:${{ github.sha }}'
+        images: 'ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_nginx:${{ github.sha }}'
