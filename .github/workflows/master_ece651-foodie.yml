@@ -67,6 +67,6 @@ jobs:
         slot-name: 'production'
         configuration-file: './docker-compose.yml'
         images: |
-          'ece651foodie.azurecr.io/ece651_web:latest'
-          'ece651foodie.azurecr.io/ece651_nginx:latest'
+          'ece651foodie.azurecr.io/ece651_web:${{ github.sha }}'
+          'ece651foodie.azurecr.io/ece651_nginx:${{ github.sha }}'
         
