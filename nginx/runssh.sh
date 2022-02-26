@@ -1,4 +1,4 @@
 #!/bin/sh
 ls -lah
-ls -lah /home
+ls -lah /home/app/*
 /usr/sbin/sshd -D &

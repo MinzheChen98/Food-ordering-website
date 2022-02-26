@@ -29,7 +29,20 @@ RUN pip install -r backend/requirements.txt
 
 RUN python backend/manage.py collectstatic --no-input --clear
 
-EXPOSE 8000
+RUN apk add openssh
+
+RUN echo "root:Docker!" | chpasswd
+
+COPY $NGINX_DIR/sshd_config /etc/ssh/
+
+RUN mkdir -p /tmp
+COPY $NGINX_DIR/ssh_setup.sh /tmp
+RUN chmod +x /tmp/ssh_setup.sh \
+    && (sleep 1;/tmp/ssh_setup.sh)
+
+RUN ls -lah $HOME/*
+
+EXPOSE 8000 2222
 
 RUN echo "--------------------"
 
