@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    image: ece651foodie.azurecr.io/ece651_web:latest
+    image: ece651foodie.azurecr.io/ece651foodie/ece651_web:latest
     volumes:
       - static_volume:/home/app/backend/staticfiles
     environment:
@@ -10,7 +10,7 @@ services:
       DB_USER: "wordpress"
       DB_PASSWORD: "wordpress"
   nginx:
-    image: ece651foodie.azurecr.io/ece651_nginx:latest
+    image: ece651foodie.azurecr.io/ece651foodie/ece651_nginx:latest
     ports:
       - 80:80
       - 2222:2222
