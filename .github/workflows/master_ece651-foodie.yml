@@ -30,14 +30,14 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_web:${{ github.sha }}
+        tags: ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_web:latest
         file: ./Dockerfile
 
     - name: Build and push nginx container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_nginx:${{ github.sha }}
+        tags: ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_nginx:latest
         file: ./nginx/Dockerfile
 
   deploy:
@@ -67,6 +67,6 @@ jobs:
         slot-name: 'production'
         configuration-file: './docker-compose.yml'
         images: |
-          'ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_web:${{ github.sha }}'
-          'ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_nginx:${{ github.sha }}'
+          'ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_web:latest'
+          'ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_nginx:latest'
         
