@@ -7,27 +7,28 @@ FROM nginx:1.21-alpine
 
 # RUN ls /etc/nginx/conf.d/
 
-ENV NGINX_DIR="."
+ENV NGINX_DIR="nginx"
 
 # RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
 RUN rm /etc/nginx/conf.d/default.conf
 COPY $NGINX_DIR/nginx.conf /etc/nginx/conf.d
 
-# RUN apk add openssh
+RUN apk add openssh
 
-# RUN echo "root:Docker!" | chpasswd
+RUN echo "root:Docker!" | chpasswd
 
-# COPY $NGINX_DIR/sshd_config /etc/ssh/
+COPY $NGINX_DIR/sshd_config /etc/ssh/
 
-# RUN mkdir -p /tmp
-# COPY $NGINX_DIR/ssh_setup.sh /tmp
-# RUN chmod +x /tmp/ssh_setup.sh \
-#     && (sleep 1;/tmp/ssh_setup.sh)
+RUN mkdir -p /tmp
+COPY $NGINX_DIR/ssh_setup.sh /tmp
+RUN chmod +x /tmp/ssh_setup.sh \
+    && (sleep 1;/tmp/ssh_setup.sh)
 
-EXPOSE 80
+EXPOSE 80 2222
 
-# COPY ${NGINX_DIR}/entrypoint.sh /root
-# RUN chmod +x /root/entrypoint.sh
+COPY ${NGINX_DIR}/runssh.sh /docker-entrypoint.d
+RUN ls -lah /docker-entrypoint.d
+RUN chmod +x /docker-entrypoint.d/runssh.sh
 
 # CMD ["/root/entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
