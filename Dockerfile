@@ -33,6 +33,8 @@ RUN apk add openssh
 
 RUN echo "root:Docker!" | chpasswd
 
+ENV NGINX_DIR="nginx"
+
 COPY $NGINX_DIR/sshd_config /etc/ssh/
 
 RUN mkdir -p /tmp
