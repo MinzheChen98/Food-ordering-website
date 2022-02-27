@@ -1,7 +1,13 @@
-// TODO
+import axios from 'axios';
 
-export function request(params) {
-    return new Promise((resolve, reject) => {
-        console.log(params);
-        resolve(params)})
+export function request(url, data) {
+    const baseUrl = 'https://foodie.aarusharora.me/';
+    const headers = {'Content-Type': 'application/json'}
+    return axios({
+        baseUrl,
+        url,
+        method: 'post',
+        data,
+        headers,
+    });
 }

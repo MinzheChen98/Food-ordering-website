@@ -1,6 +1,6 @@
-import { request } from '../../client/request';
+import { request } from './request';
 
-export function signUpAPI(params) {
-    url = 'user/login'
-    return request(url, params);
+export function signUpAPI(data) {
+    const url = 'signup';
+    return request(url, data);
 }
