@@ -1,3 +1,21 @@
+# compile and build REACT
+
+FROM node:alpine
+
+RUN mkdir -p /home/app
+
+COPY . .
+
+RUN ls -lah
+RUN ls -lah frontend
+WORKDIR $HOME/frontend
+RUN npm install
+RUN npm run build --if-present
+RUN ls -lah frontend
+RUN ls -lah frontend/build
+
+
+# multi stage build
 FROM python:alpine
 
 RUN mkdir -p /home/app
@@ -10,6 +28,7 @@ ENV HOME=/home/app
 WORKDIR $HOME
 # copy project
 COPY . .
+COPY --from=0 /home/app/frontend/build /home/app/frontend/build
 
 RUN ls -lah
 # RUN mkdir $APP_HOME
