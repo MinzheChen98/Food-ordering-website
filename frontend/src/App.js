@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import SingUp from "./pages/sign-up";
+import SignUp from "./pages/sign-up";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="login" element={<Login />} />
-        <Route path="signup" element={<SingUp />} />
+        <Route path="signup" element={<SignUp />} />
       </Routes>
     </div>
   );
@@ -19,7 +19,7 @@ function Home() {
   return (
     <>
       <main>
-        <h2>Welcome to the food dilivery app!</h2>
+        <h2>Welcome to the food delivery app!</h2>
       </main>
       <nav>
         <Link to="/login">Login</Link>
@@ -35,7 +35,7 @@ function Login() {
   return (
     <>
       <main>
-        <h2>Please Login to the food dilivery app!</h2>
+        <h2>Please Login to the food delivery app!</h2>
       </main>
       <nav>
         <Link to="/signup">Sign Up</Link>

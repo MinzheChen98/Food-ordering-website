@@ -25,6 +25,8 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 # COPY ./backend/requirements.txt .
 RUN ls -lah
+RUN ls -lah frontend/
+RUN ls -lah frontend/build
 RUN pip install -r backend/requirements.txt
 
 RUN python backend/manage.py collectstatic --no-input --clear

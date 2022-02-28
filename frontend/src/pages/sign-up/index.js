@@ -1,7 +1,7 @@
 import Form from "./form";
 import Modal from "react-bootstrap/Modal";
 
-function SingUp() {
+function SignUp() {
     return (
         <Modal.Dialog centered={true}>
             <Modal.Header className="mx-auto">
@@ -12,4 +12,4 @@ function SingUp() {
     )
 }
 
-export default SingUp;
+export default SignUp;
