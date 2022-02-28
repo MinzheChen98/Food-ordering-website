@@ -9,11 +9,11 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
 def home(request):
-    return render(request, 'todo/home.html')
+    return render(request, 'foodie/home.html')
 
 def signupuser(request):
     if request.method == 'GET':
-        return render(request, 'todo/signupuser.html', {'form':UserCreationForm()})
+        return render(request, 'foodie/signupuser.html', {'form':UserCreationForm()})
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
@@ -22,17 +22,17 @@ def signupuser(request):
                 login(request, user)
                 return redirect('currenttodos')
             except IntegrityError:
-                return render(request, 'todo/signupuser.html', {'form':UserCreationForm(), 'error':'That username has already been taken. Please choose a new username'})
+                return render(request, 'foodie/signupuser.html', {'form':UserCreationForm(), 'error':'That username has already been taken. Please choose a new username'})
         else:
-            return render(request, 'todo/signupuser.html', {'form':UserCreationForm(), 'error':'Passwords did not match'})
+            return render(request, 'foodie/signupuser.html', {'form':UserCreationForm(), 'error':'Passwords did not match'})
 
 def loginuser(request):
     if request.method == 'GET':
-        return render(request, 'todo/loginuser.html', {'form':AuthenticationForm()})
+        return render(request, 'foodie/loginuser.html', {'form':AuthenticationForm()})
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'todo/loginuser.html', {'form':AuthenticationForm(), 'error':'Username and password did not match'})
+            return render(request, 'foodie/loginuser.html', {'form':AuthenticationForm(), 'error':'Username and password did not match'})
         else:
             login(request, user)
             return redirect('currenttodos')
@@ -46,7 +46,7 @@ def logoutuser(request):
 @login_required
 def createtodo(request):
     if request.method == 'GET':
-        return render(request, 'todo/createtodo.html', {'form':TodoForm()})
+        return render(request, 'foodie/createtodo.html', {'form':TodoForm()})
     else:
         try:
             form = TodoForm(request.POST)
@@ -55,31 +55,31 @@ def createtodo(request):
             newtodo.save()
             return redirect('currenttodos')
         except ValueError:
-            return render(request, 'todo/createtodo.html', {'form':TodoForm(), 'error':'Bad data passed in. Try again.'})
+            return render(request, 'foodie/createtodo.html', {'form':TodoForm(), 'error':'Bad data passed in. Try again.'})
 
 @login_required
 def currenttodos(request):
     todos = Todo.objects.filter(user=request.user, datecompleted__isnull=True)
-    return render(request, 'todo/currenttodos.html', {'todos':todos})
+    return render(request, 'foodie/currenttodos.html', {'todos':todos})
 
 @login_required
 def completedtodos(request):
     todos = Todo.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-datecompleted')
-    return render(request, 'todo/completedtodos.html', {'todos':todos})
+    return render(request, 'foodie/completedtodos.html', {'todos':todos})
 
 @login_required
 def viewtodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
     if request.method == 'GET':
         form = TodoForm(instance=todo)
-        return render(request, 'todo/viewtodo.html', {'todo':todo, 'form':form})
+        return render(request, 'foodie/viewtodo.html', {'todo':todo, 'form':form})
     else:
         try:
             form = TodoForm(request.POST, instance=todo)
             form.save()
             return redirect('currenttodos')
         except ValueError:
-            return render(request, 'todo/viewtodo.html', {'todo':todo, 'form':form, 'error':'Bad info'})
+            return render(request, 'foodie/viewtodo.html', {'todo':todo, 'form':form, 'error':'Bad info'})
 
 @login_required
 def completetodo(request, todo_pk):
