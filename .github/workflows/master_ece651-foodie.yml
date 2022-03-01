@@ -39,34 +39,4 @@ jobs:
         push: true
         tags: ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_nginx:latest
         file: ./nginx/Dockerfile
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Azure login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - run: |
-        az webapp list
-        ls -lah
-        pwd
-    
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2.2.3
-      with:
-        app-name: 'ece651-foodie'
-        slot-name: 'production'
-        configuration-file: './docker-compose.yml'
-        images: |
-          'ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_web:latest'
-          'ece651foodie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_53746dbef1fb44f585621ca2289898c8 }}/ece651_nginx:latest'
         
