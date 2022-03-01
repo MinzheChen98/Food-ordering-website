@@ -1,12 +1,8 @@
 import * as React from "react";
-// import { Route, Link } from "react-router-dom";
-// import Link from "react-router-dom";
-// import SignUp from "./pages/sign-up";
 import Navbar from "react-bootstrap/Navbar";
 import "./App.css";
 import CustomRoutes from "./Routes";
 import Nav from "react-bootstrap/Nav";
-// import { Container } from "react-router-bootstrap";
 import Container from "react-bootstrap/Container";
 
 function App() {
@@ -26,39 +22,9 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      {/* <CustomRoutes /> */}
+      <CustomRoutes />
     </div>
   );
 }
-
-// TODO: Delete these functions and import home/login pages.
-// function Home() {
-//   return (
-//     <>
-//       <main>
-//         <h2>Welcome to the food delivery app!</h2>
-//       </main>
-//       <nav>
-//         <Link to="/login">Login</Link>
-//       </nav>
-//       <nav>
-//         <Link to="/signup">Sign Up</Link>
-//       </nav>
-//     </>
-//   );
-// }
-
-// function Login() {
-//   return (
-//     <>
-//       <main>
-//         <h2>Please Login to the food delivery app!</h2>
-//       </main>
-//       <nav>
-//         <Link to="/signup">Sign Up</Link>
-//       </nav>
-//     </>
-//   );
-// }
 
 export default App;
