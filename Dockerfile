@@ -3,12 +3,14 @@
 FROM node:alpine
 
 RUN mkdir -p /home/app
+WORKDIR /home/app
 
 COPY . .
 
 RUN ls -lah
 RUN ls -lah frontend
-WORKDIR $HOME/frontend
+WORKDIR /home/app/frontend
+RUN ls -lah
 RUN npm install
 RUN npm run build --if-present
 RUN ls -lah frontend
