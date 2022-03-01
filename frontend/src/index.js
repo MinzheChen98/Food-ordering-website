@@ -8,11 +8,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 // TODO: Use history
 ReactDOM.render(
-  <React.StrictMode>
     <Router>
       <App />
-    </Router>
-  </React.StrictMode>,
+    </Router>,
   document.getElementById('root')
 );
 // If you want to start measuring performance in your app, pass a function

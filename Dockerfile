@@ -50,6 +50,10 @@ RUN ls -lah frontend/
 RUN ls -lah frontend/build
 RUN pip install -r backend/requirements.txt
 
+RUN python backend/manage.py makemigrations
+
+RUN python backend/manage.py migrate
+
 RUN python backend/manage.py collectstatic --no-input --clear
 
 RUN apk add openssh
