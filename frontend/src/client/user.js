@@ -1,7 +1,11 @@
 import { request } from './request';
 
 export function signUpAPI(data) {
-    const baseUrl = 'https://foodie.aarusharora.me/api/';
-    const url = baseUrl+'signup';
+    const url = 'signup';
+    return request(url, data);
+}
+
+export function loginAPI(data) {
+    const url = 'login';
     return request(url, data);
 }
