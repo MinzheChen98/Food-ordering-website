@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from homepage.views import render_home_page
+from homepage.views import signup_user
+from homepage.views import login_user
 
 urlpatterns = [
     path('api/', render_home_page, name='homepage'),
+    path('api/signup/', signup_user, name='signup'),
+    path('api/login/', login_user, name='login'),
     path('supersecreturlforadminpagedontleak/', admin.site.urls),
 ]
