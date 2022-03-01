@@ -18,6 +18,6 @@ from django.urls import path
 from homepage.views import render_home_page
 
 urlpatterns = [
-    path('', render_home_page, name='homepage'),
+    path('api/', render_home_page, name='homepage'),
     path('supersecreturlforadminpagedontleak/', admin.site.urls),
 ]
