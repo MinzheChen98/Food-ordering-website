@@ -13,8 +13,8 @@ WORKDIR /home/app/frontend
 RUN ls -lah
 RUN npm install
 RUN npm run build --if-present
-RUN ls -lah frontend
-RUN ls -lah frontend/build
+RUN ls -lah 
+RUN ls -lah build
 
 
 # multi stage build
