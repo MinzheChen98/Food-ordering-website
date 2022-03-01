@@ -1,17 +1,17 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
 
-export default function Routes() {
+export default function CustomRoutes() {
   return (
-    <Switch>
+    <Routes>
       <Route exact path="/">
         <Home />
       </Route>
-	  <Route exact path="/login">
+      <Route exact path="/login">
         <Login />
       </Route>
-    </Switch>
+    </Routes>
   );
 }
